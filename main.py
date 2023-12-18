@@ -16,8 +16,11 @@ from starlette.requests import Request
 import os
 from counter import scan      # detect/detect_face.py
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
+
 
 app = FastAPI()
+handler = Mangum(app)
 
 app.add_middleware(
     CORSMiddleware,
@@ -99,6 +102,6 @@ async def opresize_route(file: bytes = File(...),wd: int = None,hg: int = None,l
     
 
 # python main.py
-if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+#if __name__ == '__main__':
+#    uvicorn.run(app, host='127.0.0.1', port=8000)
     
